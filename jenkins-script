@@ -1,0 +1,16 @@
+PATH=~/bin:$PATH
+file="work.sh"
+if [ -f "$file" ]
+then
+	echo "$file found."
+	cd jenkins
+	git pull origin master
+	cd ../
+	cp jenkins/work.sh work.sh
+else
+	echo "$file not found."
+	git clone https://github.com/delos3geur/jenkins.git -b master jenkins
+	cp jenkins/work.sh work.sh
+fi
+chmod 755 work.sh
+./work.sh
